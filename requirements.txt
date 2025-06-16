@@ -1,0 +1,49 @@
+# requirements.txt for Enhanced AI Art Generator
+
+# Core Flask dependencies
+Flask==2.3.3
+Flask-CORS==4.0.0
+
+# Image processing
+Pillow==10.0.1
+
+# Payment processing
+stripe==6.6.0
+
+# HTTP requests
+requests==2.31.0
+
+# Optional: For local Stable Diffusion (uncomment if using local backend)
+# torch>=2.0.0
+# diffusers>=0.21.0
+# transformers>=4.33.0
+# accelerate>=0.21.0
+
+# Optional: For advanced image processing
+# opencv-python==4.8.1.78
+
+# Development dependencies
+python-dotenv==1.0.0
+
+# Database (for production - replace JSON file storage)
+# SQLAlchemy==2.0.21
+# Flask-SQLAlchemy==3.0.5
+
+# Authentication (for production)
+# Flask-Login==0.6.3
+# Flask-WTF==1.1.1
+# WTForms==3.0.1
+
+# Email notifications (for production)
+# Flask-Mail==0.9.1
+
+# Caching (for production)
+# Flask-Caching==2.1.0
+# redis==5.0.0
+
+# Monitoring and logging (for production)
+# sentry-sdk[flask]==1.32.0
+
+# API rate limiting (for production)
+# Flask-Limiter==3.5.0
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commerce Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">🛍️ Commerce Store</h1>
+                <div class="nav-links">
+                    <a href="/">Store</a>
+                    <a href="/dashboard">Dashboard</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Welcome to Our Store</h2>
+                <p>Discover amazing products and services</p>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <div class="container">
+                <h2>Featured Items</h2>
+                <div class="featured-slider" id="featured-slider">
+                    <!-- Featured products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="products" id="products">
+            <div class="container">
+                <h2>Our Products</h2>
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Complete Your Purchase</h3>
+            <div id="payment-element">
+                <!-- Stripe Elements will be inserted here -->
+            </div>
+            <button id="submit-payment" class="btn btn-primary">
+                Pay Now
+            </button>
+            <div id="payment-message" class="hidden"></div>
+        </div>
+    </div>
+
+    <!-- Quick Purchase Modal (for your Stripe link) -->
+    <div id="quickPayModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Quick Purchase</h3>
+            <p>Click below to purchase directly through our secure Stripe checkout:</p>
+            <a href="https://buy.stripe.com/test_8wMeXM8zVbOW6Ck9AB" 
+               target="_blank" 
+               class="btn btn-primary btn-large">
+                🚀 Buy Now via Stripe
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Commerce Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/store.js"></script>
+</body>
+</html> 

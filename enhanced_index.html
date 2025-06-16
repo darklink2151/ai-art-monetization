@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Art Generator Pro</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .tier-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .tier-free { background: #e2e8f0; color: #64748b; }
+        .tier-basic { background: #dbeafe; color: #1d4ed8; }
+        .tier-pro { background: #fef3c7; color: #d97706; }
+        
+        .credits-display {
+            background: #f8fafc;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .generator-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .pricing-card, .stats-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f8fafc;
+            color: #374151;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+        
+        .btn-full {
+            width: 100%;
+        }
+        
+        .image-display {
+            margin-top: 2rem;
+            border: 2px dashed #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+        }
+        
+        .generated-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(102, 126, 234, 0.1);
+            border-left-color: #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .pricing-tier {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-tier:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .pricing-tier.current {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        
+        .tier-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tier-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .tier-features {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+        
+        .tier-features li {
+            padding: 0.25rem 0;
+            color: #6b7280;
+        }
+        
+        .tier-features li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .credit-package {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .credit-package:hover {
+            border-color: #667eea;
+            background: #f8fafc;
+        }
+        
+        .package-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .package-credits {
+            font-weight: bold;
+            color: #374151;
+        }
+        
+        .package-price {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .package-value {
+            color: #10b981;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .alert-error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        
+        .alert-success {
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .alert-info {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .user-info {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">🎨 AI Art Generator Pro</div>
+            <div class="user-info">
+                <span class="tier-badge tier-{{ user_data.subscription_tier }}">
+                    {{ user_data.subscription_tier | title }} Tier
+                </span>
+                <div class="credits-display">
+                    💎 {{ user_data.credits }} Credits
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'error' if category == 'error' else 'success' if category == 'success' else 'info' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="main-content">
+            <div class="generator-panel">
+                <h2>Generate AI Art</h2>
+                <form id="generate-form">
+                    <div class="form-group">
+                        <label for="prompt">Describe your artwork:</label>
+                        <textarea id="prompt" name="prompt" placeholder="e.g., A majestic dragon soaring over a mystical forest at sunset, digital art style, highly detailed" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="style">Art Style:</label>
+                        <select id="style" name="style">
+                            {% for style in styles %}
+                                <option value="{{ style }}">{{ style | title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resolution">Resolution:</label>
+                        <select id="resolution" name="resolution">
+                            {% for res in resolutions %}
+                                {% set res_pixels = res.split('x')[0]|int * res.split('x')[1]|int %}
+                                {% set max_pixels = tier_limits.max_resolution.split('x')[0]|int * tier_limits.max_resolution.split('x')[1]|int %}
+                                <option value="{{ res }}" {% if res_pixels > max_pixels %}disabled{% endif %}>
+                                    {{ res }} {% if res_pixels > max_pixels %}(Upgrade Required){% endif %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full" id="generate-btn">
+                        🎨 Generate Art (1 Credit)
+                    </button>
+                </form>
+                
+                <div class="image-display" id="image-display">
+                    <div class="loading-spinner" id="loading-spinner" style="display: none;"></div>
+                    <img id="generated-image" class="generated-image" style="display: none;">
+                    <p id="image-placeholder">Your AI-generated artwork will appear here</p>
+                </div>
+                
+                <div id="error-message" class="alert alert-error" style="display: none;"></div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="stats-card">
+                    <h3>Your Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ user_data.daily_generations }}</div>
+                            <div class="stat-label">Today</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">{{ user_data.total_generations }}</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                    </div>
+                    {% if tier_limits.daily_limit != -1 %}
+                        <p>Daily Limit: {{ user_data.daily_generations }}/{{ tier_limits.daily_limit }}</p>
+                    {% else %}
+                        <p>✨ Unlimited daily generations</p>
+                    {% endif %}
+                </div>
+                
+                {% if user_data.subscription_tier == 'free' %}
+                <div class="pricing-card">
+                    <h3>Upgrade Your Plan</h3>
+                    
+                    <div class="pricing-tier">
+                        <div class="tier-name">Basic Creator</div>
+                        <div class="tier-price">$9.99/month</div>
+                        <ul class="tier-features">
+                            <li>50 generations per day</li>
+                            <li>Up to 1024x1024 resolution</li>
+                            <li>All art styles</li>
+                            <li>No watermarks</li>
+                            <li>Commercial use license</li>
+                        </ul>
+                        <button class="btn btn-primary btn-full" onclick="subscribe('basic')">
+                            Upgrade to Basic
+                        </button>
+                    </div>
+                    
+                    <div class="pricing-tier">
+                        <div class="tier-name">Pro Artist</div>
+                        <div class="tier-price">$29.99/month</div>
+                        <ul class="tier-features">
+                            <li>Unlimited generations</li>
+                            <li>Up to 2048x2048 resolution</li>
+                            <li>All art styles + exclusives</li>
+                            <li>Priority generation queue</li>
+                            <li>Full commercial license</li>
+                            <li>API access</li>
+                        </ul>
+                        <button class="btn btn-primary btn-full" onclick="subscribe('pro')">
+                            Upgrade to Pro
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="pricing-card">
+                    <h3>Buy More Credits</h3>
+                    
+                    <div class="credit-package" onclick="purchaseCredits('small')">
+                        <div class="package-info">
+                            <div class="package-credits">100 Credits</div>
+                            <div class="package-price">$5.00</div>
+                        </div>
+                        <div class="package-value">$0.05/credit</div>
+                    </div>
+                    
+                    <div class="credit-package" onclick="purchaseCredits('medium')">
+                        <div class="package-info">
+                            <div class="package-credits">500 Credits</div>
+                            <div class="package-price">$20.00</div>
+                        </div>
+                        <div class="package-value">$0.04/credit</div>
+                    </div>
+                    
+                    <div class="credit-package" onclick="purchaseCredits('large')">
+                        <div class="package-info">
+                            <div class="package-credits">1200 Credits</div>
+                            <div class="package-price">$40.00</div>
+                        </div>
+                        <div class="package-value">$0.033/credit - Best Value!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stripe = Stripe('{{ stripe_key }}');
+        
+        document.getElementById('generate-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const generateBtn = document.getElementById('generate-btn');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const generatedImage = document.getElementById('generated-image');
+            const imagePlaceholder = document.getElementById('image-placeholder');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Reset display
+            generatedImage.style.display = 'none';
+            imagePlaceholder.style.display = 'none';
+            errorMessage.style.display = 'none';
+            loadingSpinner.style.display = 'block';
+            generateBtn.disabled = true;
+            generateBtn.textContent = 'Generating...';
+            
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const imageUrl = URL.createObjectURL(blob);
+                    generatedImage.src = imageUrl;
+                    generatedImage.style.display = 'block';
+                    
+                    // Update user status
+                    updateUserStatus();
+                } else {
+                    const errorData = await response.json();
+                    errorMessage.textContent = errorData.error;
+                    errorMessage.style.display = 'block';
+                    imagePlaceholder.style.display = 'block';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Network error: ' + error.message;
+                errorMessage.style.display = 'block';
+                imagePlaceholder.style.display = 'block';
+            } finally {
+                loadingSpinner.style.display = 'none';
+                generateBtn.disabled = false;
+                generateBtn.textContent = '🎨 Generate Art (1 Credit)';
+            }
+        });
+        
+        async function updateUserStatus() {
+            try {
+                const response = await fetch('/api/user-status');
+                const data = await response.json();
+                
+                // Update credits display
+                document.querySelector('.credits-display').textContent = `💎 ${data.user_data.credits} Credits`;
+                
+                // Update stats
+                document.querySelector('.stat-number').textContent = data.user_data.daily_generations;
+                
+            } catch (error) {
+                console.error('Failed to update user status:', error);
+            }
+        }
+        
+        async function purchaseCredits(package) {
+            try {
+                const response = await fetch('/api/purchase-credits', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ package: package })
+                });
+                
+                const data = await response.json();
+                
+                if (data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Network error: ' + error.message);
+            }
+        }
+        
+        async function subscribe(tier) {
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ tier: tier })
+                });
+                
+                const data = await response.json();
+                
+                if (data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Network error: ' + error.message);
+            }
+        }
+        
+        // Update user status on page load
+        updateUserStatus();
+    </script>
+</body>
+</html>
+

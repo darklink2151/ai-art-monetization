@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Commerce Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">🛍️ Enhanced Commerce Store</h1>
+                <div class="nav-links">
+                    <a href="/">Store</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <div class="cart-icon" onclick="openCartModal()">
+                        🛒 Cart
+                        <span id="cart-count" class="cart-count" style="display: none;">0</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Welcome to Our Enhanced Store</h2>
+                <p>Discover amazing products with smart recommendations and exclusive discounts</p>
+                <div class="hero-features">
+                    <div class="feature-badge">🎯 Smart Recommendations</div>
+                    <div class="feature-badge">💰 Exclusive Discounts</div>
+                    <div class="feature-badge">⚡ Instant Delivery</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filter Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-controls">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search products..." />
+                        <button id="search-btn" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="filter-controls">
+                        <select id="category-filter">
+                            <option value="all">All Categories</option>
+                        </select>
+                        <select id="type-filter">
+                            <option value="all">All Types</option>
+                            <option value="digital">Digital</option>
+                            <option value="subscription">Subscription</option>
+                        </select>
+                        <select id="sort-filter">
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="price-asc">Price (Low to High)</option>
+                            <option value="price-desc">Price (High to Low)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <div class="container">
+                <h2>🌟 Featured Items</h2>
+                <div class="featured-slider" id="featured-slider">
+                    <!-- Featured products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="products" id="products">
+            <div class="container">
+                <h2>Our Products</h2>
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enhanced Cart Modal -->
+    <div id="cartModal" class="modal cart-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h3>🛒 Shopping Cart</h3>
+            
+            <div id="cart-content">
+                <!-- Cart content will be rendered here -->
+            </div>
+            
+            <!-- Discount Code Section -->
+            <div id="discount-section" class="discount-section">
+                <h4>💰 Have a discount code?</h4>
+                <div class="discount-input-group">
+                    <input type="text" id="discount-code" placeholder="Enter discount code" class="discount-input">
+                    <button type="button" id="apply-discount" class="btn btn-secondary">Apply</button>
+                </div>
+                <div id="discount-message" class="discount-message"></div>
+                <div id="discount-applied" class="discount-applied" style="display: none;">
+                    <span class="discount-info"></span>
+                    <button type="button" id="remove-discount" class="remove-discount">×</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content product-modal-content">
+            <span class="close">&times;</span>
+            <div id="product-detail-content">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Purchase Modal (for your Stripe link) -->
+    <div id="quickPayModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Quick Purchase</h3>
+            <p>Click below to purchase directly through our secure Stripe checkout:</p>
+            <a href="https://buy.stripe.com/test_8wMeXM8zVbOW6Ck9AB" 
+               target="_blank" 
+               class="btn btn-primary btn-large">
+                🚀 Buy Now via Stripe
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Enhanced Commerce</h4>
+                    <p>Your trusted digital marketplace with smart features and secure delivery.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Smart Recommendations</li>
+                        <li>Secure Digital Delivery</li>
+                        <li>Instant Downloads</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Security</h4>
+                    <ul>
+                        <li>SSL Encryption</li>
+                        <li>Anti-Piracy Protection</li>
+                        <li>Secure Payments</li>
+                        <li>Privacy Protection</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Enhanced Commerce Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="enhanced_features.js"></script>
+    <script src="js/enhanced-store.js"></script>
+    
+    <style>
+        .hero-features {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .feature-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .search-section {
+            background: #f8fafc;
+            padding: 30px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .search-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-controls select {
+            padding: 10px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            font-size: 0.875rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+            text-align: center;
+            color: #64748b;
+        }
+        
+        @media (max-width: 768px) {
+            .search-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-bar {
+                min-width: auto;
+            }
+            
+            .filter-controls {
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>
+

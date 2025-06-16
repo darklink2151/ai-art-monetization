@@ -1,0 +1,664 @@
+{
+  "individual_tests": [
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 10,
+        "long_period": 30
+      },
+      "total_trades": 350,
+      "final_value": 22763.12790325465,
+      "total_return": 127.63127903254652,
+      "sharpe_ratio": 0.07917455896911382,
+      "max_drawdown": 0.0,
+      "win_rate": 36.57142857142857
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 5,
+        "long_period": 20
+      },
+      "total_trades": 558,
+      "final_value": 36539.85410898112,
+      "total_return": 265.3985410898112,
+      "sharpe_ratio": 0.09530402740596837,
+      "max_drawdown": 0.0,
+      "win_rate": 40.86021505376344
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 30,
+        "overbought": 70
+      },
+      "total_trades": 165,
+      "final_value": 22692.249266313764,
+      "total_return": 126.92249266313765,
+      "sharpe_ratio": 0.2474631131817462,
+      "max_drawdown": -44.88878586409723,
+      "win_rate": 69.51219512195121
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 25,
+        "overbought": 75
+      },
+      "total_trades": 33,
+      "final_value": 12518.00377695989,
+      "total_return": 25.180037769598897,
+      "sharpe_ratio": 0.24244988403737353,
+      "max_drawdown": -45.3694797775322,
+      "win_rate": 68.75
+    }
+  ],
+  "sma_optimization": [
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 5,
+        "long_period": 20
+      },
+      "total_trades": 262,
+      "final_value": 11045.95998884962,
+      "total_return": 10.459599888496196,
+      "sharpe_ratio": 0.012934234699710558,
+      "max_drawdown": 0.0,
+      "win_rate": 36.6412213740458
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 5,
+        "long_period": 30
+      },
+      "total_trades": 192,
+      "final_value": 16141.317644287425,
+      "total_return": 61.41317644287425,
+      "sharpe_ratio": 0.07415587932863442,
+      "max_drawdown": 0.0,
+      "win_rate": 35.41666666666667
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 5,
+        "long_period": 40
+      },
+      "total_trades": 164,
+      "final_value": 15710.183909792799,
+      "total_return": 57.101839097927986,
+      "sharpe_ratio": 0.09558014227850546,
+      "max_drawdown": 0.0,
+      "win_rate": 34.146341463414636
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 5,
+        "long_period": 50
+      },
+      "total_trades": 140,
+      "final_value": 15803.458818563204,
+      "total_return": 58.03458818563204,
+      "sharpe_ratio": 0.10745422670603356,
+      "max_drawdown": 0.0,
+      "win_rate": 32.857142857142854
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 10,
+        "long_period": 20
+      },
+      "total_trades": 224,
+      "final_value": 13118.655661607978,
+      "total_return": 31.18655661607978,
+      "sharpe_ratio": 0.0426828342753613,
+      "max_drawdown": 0.0,
+      "win_rate": 40.17857142857143
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 10,
+        "long_period": 30
+      },
+      "total_trades": 144,
+      "final_value": 15338.320470171866,
+      "total_return": 53.383204701718654,
+      "sharpe_ratio": 0.09024133905200396,
+      "max_drawdown": 0.0,
+      "win_rate": 36.11111111111111
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 10,
+        "long_period": 40
+      },
+      "total_trades": 116,
+      "final_value": 17130.57806470238,
+      "total_return": 71.30578064702378,
+      "sharpe_ratio": 0.14073601509375655,
+      "max_drawdown": 0.0,
+      "win_rate": 43.103448275862064
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 10,
+        "long_period": 50
+      },
+      "total_trades": 100,
+      "final_value": 14168.85043016427,
+      "total_return": 41.688504301642695,
+      "sharpe_ratio": 0.09517255109875183,
+      "max_drawdown": 0.0,
+      "win_rate": 40.0
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 15,
+        "long_period": 20
+      },
+      "total_trades": 264,
+      "final_value": 14195.497916012988,
+      "total_return": 41.95497916012988,
+      "sharpe_ratio": 0.049235311921134076,
+      "max_drawdown": 0.0,
+      "win_rate": 40.909090909090914
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 15,
+        "long_period": 30
+      },
+      "total_trades": 134,
+      "final_value": 13405.996316644463,
+      "total_return": 34.05996316644463,
+      "sharpe_ratio": 0.0706300970995767,
+      "max_drawdown": 0.0,
+      "win_rate": 41.7910447761194
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 15,
+        "long_period": 40
+      },
+      "total_trades": 104,
+      "final_value": 15800.504708930244,
+      "total_return": 58.005047089302444,
+      "sharpe_ratio": 0.12122936978598448,
+      "max_drawdown": 0.0,
+      "win_rate": 46.15384615384615
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 15,
+        "long_period": 50
+      },
+      "total_trades": 90,
+      "final_value": 12547.637594987118,
+      "total_return": 25.476375949871183,
+      "sharpe_ratio": 0.07217736527043485,
+      "max_drawdown": 0.0,
+      "win_rate": 40.0
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 20,
+        "long_period": 30
+      },
+      "total_trades": 140,
+      "final_value": 14314.680042633669,
+      "total_return": 43.14680042633668,
+      "sharpe_ratio": 0.07626255184556101,
+      "max_drawdown": 0.0,
+      "win_rate": 44.285714285714285
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 20,
+        "long_period": 40
+      },
+      "total_trades": 106,
+      "final_value": 11061.208816337723,
+      "total_return": 10.61208816337723,
+      "sharpe_ratio": 0.028412917069893514,
+      "max_drawdown": 0.0,
+      "win_rate": 33.9622641509434
+    },
+    {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 20,
+        "long_period": 50
+      },
+      "total_trades": 88,
+      "final_value": 10539.705231300399,
+      "total_return": 5.397052313003988,
+      "sharpe_ratio": 0.018540781172967657,
+      "max_drawdown": 0.0,
+      "win_rate": 36.36363636363637
+    }
+  ],
+  "rsi_optimization": [
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 20,
+        "overbought": 65
+      },
+      "total_trades": 91,
+      "final_value": 3361.0270617518104,
+      "total_return": -66.38972938248189,
+      "sharpe_ratio": -0.3216148242142435,
+      "max_drawdown": -68.61576454491966,
+      "win_rate": 51.11111111111111
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 20,
+        "overbought": 70
+      },
+      "total_trades": 85,
+      "final_value": 3635.925789245974,
+      "total_return": -63.64074210754026,
+      "sharpe_ratio": -0.27691616240461375,
+      "max_drawdown": -68.61576454491967,
+      "win_rate": 57.14285714285714
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 20,
+        "overbought": 80
+      },
+      "total_trades": 59,
+      "final_value": 2919.0282998809103,
+      "total_return": -70.8097170011909,
+      "sharpe_ratio": -0.3424280548315508,
+      "max_drawdown": -68.61576454491964,
+      "win_rate": 44.827586206896555
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 30,
+        "overbought": 65
+      },
+      "total_trades": 149,
+      "final_value": 4217.317714802574,
+      "total_return": -57.826822851974256,
+      "sharpe_ratio": -0.16793977118748515,
+      "max_drawdown": -68.64123089892787,
+      "win_rate": 56.75675675675676
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 30,
+        "overbought": 70
+      },
+      "total_trades": 125,
+      "final_value": 4286.262517456371,
+      "total_return": -57.1373748254363,
+      "sharpe_ratio": -0.14323341332426315,
+      "max_drawdown": -68.63296362664045,
+      "win_rate": 61.29032258064516
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 30,
+        "overbought": 80
+      },
+      "total_trades": 63,
+      "final_value": 2580.9972587571337,
+      "total_return": -74.19002741242866,
+      "sharpe_ratio": -0.2845628708495687,
+      "max_drawdown": -68.63296362664045,
+      "win_rate": 48.38709677419355
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 35,
+        "overbought": 65
+      },
+      "total_trades": 173,
+      "final_value": 4484.948211848463,
+      "total_return": -55.15051788151537,
+      "sharpe_ratio": -0.12989287147903317,
+      "max_drawdown": -68.6202258443047,
+      "win_rate": 58.139534883720934
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 35,
+        "overbought": 70
+      },
+      "total_trades": 145,
+      "final_value": 4746.527582977915,
+      "total_return": -52.53472417022085,
+      "sharpe_ratio": -0.1069607117017918,
+      "max_drawdown": -68.63296362664043,
+      "win_rate": 62.5
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 10,
+        "oversold": 35,
+        "overbought": 80
+      },
+      "total_trades": 73,
+      "final_value": 3130.3780634874884,
+      "total_return": -68.69621936512512,
+      "sharpe_ratio": -0.22262080934691644,
+      "max_drawdown": -68.63296362664045,
+      "win_rate": 52.77777777777778
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 20,
+        "overbought": 65
+      },
+      "total_trades": 39,
+      "final_value": 5635.750486640317,
+      "total_return": -43.64249513359683,
+      "sharpe_ratio": -0.1888049591246781,
+      "max_drawdown": -68.69101155495254,
+      "win_rate": 57.89473684210527
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 20,
+        "overbought": 70
+      },
+      "total_trades": 37,
+      "final_value": 5946.471868905864,
+      "total_return": -40.535281310941365,
+      "sharpe_ratio": -0.17346607445719037,
+      "max_drawdown": -68.69101155495254,
+      "win_rate": 61.111111111111114
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 20,
+        "overbought": 80
+      },
+      "total_trades": 33,
+      "final_value": 7384.204880946253,
+      "total_return": -26.15795119053747,
+      "sharpe_ratio": -0.06290332199648589,
+      "max_drawdown": -68.69101155495254,
+      "win_rate": 75.0
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 30,
+        "overbought": 65
+      },
+      "total_trades": 81,
+      "final_value": 4657.82085117351,
+      "total_return": -53.4217914882649,
+      "sharpe_ratio": -0.17398653529618854,
+      "max_drawdown": -68.67772175905743,
+      "win_rate": 55.00000000000001
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 30,
+        "overbought": 70
+      },
+      "total_trades": 65,
+      "final_value": 3996.110807591927,
+      "total_return": -60.03889192408073,
+      "sharpe_ratio": -0.21870662902707882,
+      "max_drawdown": -68.67772175905745,
+      "win_rate": 53.125
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 30,
+        "overbought": 80
+      },
+      "total_trades": 45,
+      "final_value": 4420.791880431492,
+      "total_return": -55.79208119568507,
+      "sharpe_ratio": -0.17998454617418047,
+      "max_drawdown": -68.67772175905743,
+      "win_rate": 50.0
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 35,
+        "overbought": 65
+      },
+      "total_trades": 99,
+      "final_value": 3719.2399936718953,
+      "total_return": -62.80760006328104,
+      "sharpe_ratio": -0.19133557109223734,
+      "max_drawdown": -68.6349762598603,
+      "win_rate": 61.224489795918366
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 35,
+        "overbought": 70
+      },
+      "total_trades": 75,
+      "final_value": 3278.527890290146,
+      "total_return": -67.21472109709853,
+      "sharpe_ratio": -0.2441371585662923,
+      "max_drawdown": -68.6349762598603,
+      "win_rate": 54.054054054054056
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 14,
+        "oversold": 35,
+        "overbought": 80
+      },
+      "total_trades": 45,
+      "final_value": 3918.7834343968057,
+      "total_return": -60.81216565603194,
+      "sharpe_ratio": -0.1922825502807218,
+      "max_drawdown": -68.6349762598603,
+      "win_rate": 45.45454545454545
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 20,
+        "overbought": 65
+      },
+      "total_trades": 25,
+      "final_value": 9819.2695179432,
+      "total_return": -1.807304820568006,
+      "sharpe_ratio": -0.0009832577482747325,
+      "max_drawdown": -68.83299213494428,
+      "win_rate": 75.0
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 20,
+        "overbought": 70
+      },
+      "total_trades": 21,
+      "final_value": 10712.476715380619,
+      "total_return": 7.124767153806187,
+      "sharpe_ratio": 0.053178233762946406,
+      "max_drawdown": -68.83299213494428,
+      "win_rate": 80.0
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 20,
+        "overbought": 80
+      },
+      "total_trades": 7,
+      "final_value": 6121.347337453978,
+      "total_return": -38.78652662546022,
+      "sharpe_ratio": -0.3734020070135212,
+      "max_drawdown": -68.83299213494428,
+      "win_rate": 33.33333333333333
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 30,
+        "overbought": 65
+      },
+      "total_trades": 45,
+      "final_value": 6280.3752511537905,
+      "total_return": -37.1962474884621,
+      "sharpe_ratio": -0.11948978711480603,
+      "max_drawdown": -68.66797953031121,
+      "win_rate": 54.54545454545454
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 30,
+        "overbought": 70
+      },
+      "total_trades": 33,
+      "final_value": 4223.830911150619,
+      "total_return": -57.76169088849381,
+      "sharpe_ratio": -0.21374120710519012,
+      "max_drawdown": -68.66797953031121,
+      "win_rate": 43.75
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 30,
+        "overbought": 80
+      },
+      "total_trades": 7,
+      "final_value": 4773.708319341333,
+      "total_return": -52.26291680658667,
+      "sharpe_ratio": -0.3948327816642393,
+      "max_drawdown": -68.66797953031121,
+      "win_rate": 33.33333333333333
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 35,
+        "overbought": 65
+      },
+      "total_trades": 61,
+      "final_value": 5154.562038024443,
+      "total_return": -48.45437961975557,
+      "sharpe_ratio": -0.11684968243756937,
+      "max_drawdown": -68.67844077767042,
+      "win_rate": 56.666666666666664
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 35,
+        "overbought": 70
+      },
+      "total_trades": 43,
+      "final_value": 4872.007496073441,
+      "total_return": -51.27992503926559,
+      "sharpe_ratio": -0.12924170883598238,
+      "max_drawdown": -68.67844077767042,
+      "win_rate": 52.38095238095239
+    },
+    {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 35,
+        "overbought": 80
+      },
+      "total_trades": 7,
+      "final_value": 5253.191327777596,
+      "total_return": -47.468086722224044,
+      "sharpe_ratio": -0.29729476910703856,
+      "max_drawdown": -68.67844077767042,
+      "win_rate": 33.33333333333333
+    }
+  ],
+  "best_strategies": {
+    "sma": {
+      "strategy_name": "SMA Crossover",
+      "parameters": {
+        "short_period": 10,
+        "long_period": 40
+      },
+      "total_trades": 116,
+      "final_value": 17130.57806470238,
+      "total_return": 71.30578064702378,
+      "sharpe_ratio": 0.14073601509375655,
+      "max_drawdown": 0.0,
+      "win_rate": 43.103448275862064
+    },
+    "rsi": {
+      "strategy_name": "RSI Strategy",
+      "parameters": {
+        "period": 21,
+        "oversold": 20,
+        "overbought": 70
+      },
+      "total_trades": 21,
+      "final_value": 10712.476715380619,
+      "total_return": 7.124767153806187,
+      "sharpe_ratio": 0.053178233762946406,
+      "max_drawdown": -68.83299213494428,
+      "win_rate": 80.0
+    }
+  }
+}
